@@ -7,7 +7,7 @@ import type { Group } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 import { Plus } from "lucide-react"
 import { useState } from "react"
-import GroupItem from "@/components/group-item/GroupItem"
+import GroupItem from "./GroupItem"
 
 function GroupsPage() {
     const {data} = useQuery<unknown, unknown, Group[]>({

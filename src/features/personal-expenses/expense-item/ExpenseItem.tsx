@@ -47,7 +47,6 @@ function ExpenseItem({expense}: ExpenseItemProps) {
             [{expense.expenseType === "EXPENSE" ? "-" : "+"}${expense.amount}]
             </span>
         </h1>
-        <p className="text-sm text-hray-600">{expense.description}</p>
         <p className="text-sm text-gray-600">Jul 18, 2025: 8:25 am</p>
       </div>
       <div >

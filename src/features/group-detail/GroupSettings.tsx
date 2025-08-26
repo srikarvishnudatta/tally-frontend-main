@@ -19,8 +19,7 @@ function GroupSettings({group}: {
     ev.preventDefault()
     const fd = new FormData(ev.target as HTMLFormElement)
     const groupName = fd.get("groupName") as string
-    const groupDescription = fd.get("groupDescription") as string
-    const response = await updateGroup(group.id, {groupDescription, groupName})
+    const response = await updateGroup(group.id, {groupName})
     if(response.status){
       toast("Group information updated!")
     }
@@ -45,8 +44,6 @@ function GroupSettings({group}: {
      {edit ? <form className="space-y-2 p-2 border-1 rounded-xl shadow-sm" onSubmit={saveChanges}>
         <Label>Group Name</Label>
         <Input defaultValue={group.groupName} name="groupName" required/>
-        <Label>Description</Label>
-        <Input defaultValue={group.groupDescription} name="groupDescription" required/>
         <div className="flex gap-2 justify-end">
             <Button variant={"outline"} type="button" onClick={() => setEdit(false)}>Cancel</Button>
             <Button>Save <Check /></Button>
@@ -55,7 +52,6 @@ function GroupSettings({group}: {
      <div className="bg-slate-100 px-4 py-5 flex justify-between items-center shadow-md rounded-2xl">
        <div>
         <h3 className="font-bold">{group.groupName}</h3>
-        <p className="text-sm text-gray-600 font-semibold">{group.groupDescription}</p>
        </div>
        <Button onClick={() => setEdit(true)} type="button" variant={"outline"}>
         <Edit /> Edit

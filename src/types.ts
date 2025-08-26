@@ -25,13 +25,11 @@ export interface PersonalExpense{
 }
 export interface NewExpense{
     expenseName:string;
-    description:string;
     amount:number;
     expenseType: 'EXPENSE' | 'INCOME';
 }
 export interface NewGroup {
     groupName:string,
-    groupDescription:string,
 }
 export interface Group extends NewGroup{
     id:number,
@@ -45,8 +43,7 @@ export interface GroupMember {
 }
 export interface GroupExpense {
     id:number,
-    expenseNumber:string,
-    description:string,
+    expenseName:string,
     amount:number,
     paidBy:string,
     shareValues: GroupExpenseRecord
@@ -56,6 +53,13 @@ export interface GroupExpenseRecord {
     paidBy:string,
     owed:string,
     amount:number
+}
+export interface NewGroupExpense {
+    expenseName:string,
+    amount:number,
+    paidBy:string,
+    groupId:number,
+    splitAmong: Record<string, number>
 }
 export interface NewInvite {
     groupId:number,

@@ -1,5 +1,3 @@
-import { Check } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -8,6 +6,7 @@ import type { Dispatch, FormEvent, SetStateAction } from "react"
 import { editPersonalExpense } from "@/service/personalExpense.service"
 import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query"
+import ModalSubmit from "@/components/modal-submit"
 
 type ExpenseItemProps = {
     expense: Expense;
@@ -16,16 +15,15 @@ type ExpenseItemProps = {
 
 function EditExpenseItem({expense, setIsOpen}: ExpenseItemProps) {
     const queryClient = useQueryClient()
-    const {expenseName, description, expenseType, amount} = expense
+    const {expenseName, expenseType, amount} = expense
     const handleEdit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.target as HTMLFormElement)
          const expenseName = formData.get("expenseName") as string
-        const description = formData.get("description") as string
         const amount = parseFloat(formData.get("amount") as string)
         const expenseType = formData.get("expenseType") as 'INCOME' | 'EXPENSE'
         const response = await editPersonalExpense(expense.id, {
-            expenseName, expenseType, description, amount
+            expenseName, expenseType, amount
         })
         if(response.status){
             setTimeout(() => setIsOpen(false), 1000)
@@ -39,8 +37,6 @@ function EditExpenseItem({expense, setIsOpen}: ExpenseItemProps) {
     <form className="space-y-2" onSubmit={handleEdit}>
         <Label>Name</Label>
         <Input defaultValue={expenseName} name="expenseName"/>
-        <Label>Description</Label>
-        <Input defaultValue={description} name="description"/>
 
         <Label>Amount</Label>
         <Input defaultValue={amount} type="number" step={"any"} name="amount"/>
@@ -62,10 +58,7 @@ function EditExpenseItem({expense, setIsOpen}: ExpenseItemProps) {
             </SelectContent>
         </Select>
 
-        <div className="flex gap-2 justify-end">
-            <Button variant={"outline"} type="button" onClick={() => setIsOpen(false)}>Cancel</Button>
-            <Button>Confirm <Check /></Button>
-        </div>
+       <ModalSubmit onClick={() => setIsOpen(false)}/>
     </form>
   )
 }

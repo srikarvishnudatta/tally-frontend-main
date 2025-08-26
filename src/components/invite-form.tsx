@@ -1,10 +1,9 @@
 import type { Dispatch, FormEvent, SetStateAction } from "react"
-import { Input } from "../ui/input"
-import { Label } from "../ui/label"
-import { Button } from "../ui/button"
-import { Check } from "lucide-react"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
 import { sendInvite } from "@/service/invite.service"
 import { toast } from "sonner"
+import ModalSubmit from "./modal-submit"
 
 
 function InviteForm({
@@ -27,10 +26,7 @@ function InviteForm({
     <form onSubmit={submitHandler} className="space-y-2">
         <Label>Enter Email:</Label>
         <Input name="receiverEmail" required placeholder="yourfriend@gmail.com"/>
-        <div className="flex gap-2 justify-end">
-            <Button variant={"outline"} type="button" onClick={() => setIsOpen(false)}>Cancel</Button>
-            <Button>Confirm <Check /></Button>
-        </div>
+        <ModalSubmit onClick={() => setIsOpen(false)}/>
     </form>
   )
 }

@@ -8,13 +8,15 @@ import { useParams } from "react-router-dom"
 import Balances from "./Balances"
 import ResponsiveDialog from "@/components/responsive-dialog"
 import { useState } from "react"
-import InviteForm from "@/components/invite-item/InviteForm"
+import InviteForm from "@/components/invite-form"
 import GroupSettings from "./GroupSettings"
+import ExpenseForm from "@/components/expense-form"
 
 function GroupDetailPage() {
   const params = useParams()
   const groupId = Number(params.groupId)
   const [showInviteform, setShowInviteform] = useState(false)
+  const [showExpenseForm, setShowExpenseForm] = useState(false)
   const [currentView, setCurrentView] = useState('expenses')
   
   const queries: [UseQueryResult<Group>, UseQueryResult<GroupExpense[]>] = useQueries({
@@ -36,16 +38,19 @@ function GroupDetailPage() {
      <ResponsiveDialog isOpen={showInviteform} setIsOpen={setShowInviteform} title="Invite your Friend" description="Enter your friend's email">
      <InviteForm groupId={groupId} setIsOpen={setShowInviteform}/>
    </ResponsiveDialog>
+   <ResponsiveDialog isOpen={showExpenseForm} setIsOpen={setShowExpenseForm}
+   title="Add your expense" description="Enter your fields here"
+   >
+    <ExpenseForm setIsOpen={setShowExpenseForm} members={group.data?.groupMemberList || []} groupId={group.data?.id || 0}/>
+   </ResponsiveDialog>
    <div className="space-y-1">
       <h1 className="text-3xl md:text-4xl capitalize font-black">
         {group.data?.groupName}
       </h1>
-      <p className="text-lg font-light md:text-xl">
-        {group.data?.groupDescription}
-      </p>
       <Balances />
        <div className="my-2 space-y-2 md:flex md:gap-2">
-          <Button className="iconButton" onClick={() => setCurrentView("expenses")}>Expense <PlusIcon /></Button>
+          <Button onClick={() => setShowExpenseForm(true)} >Add <PlusIcon /></Button>
+          <Button variant={"outline"} onClick={() => setCurrentView("expenses")}>Expenses</Button>
           <Button variant={"outline"} onClick={() => setCurrentView("settings")}><Settings />Settings</Button>
           <Button variant={"outline"} onClick={() => setShowInviteform(true)}><Users/> Invite</Button>
         </div>
