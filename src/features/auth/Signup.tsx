@@ -31,7 +31,7 @@ function Signup() {
   }
   return (
     <form 
-    className="mx-2 space-y-2 border-1 border-muted px-4 py-10 w-[560px] shadow-md rounded-md animate-slide-in"
+    className="bg-white mx-2 space-y-2 border-1 border-muted px-4 py-10 w-[560px] shadow-md rounded-md animate-slide-in"
     onSubmit={signupHandler}
     >
         <Logo/>

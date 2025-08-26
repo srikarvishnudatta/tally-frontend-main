@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { deleteGroup, updateGroup } from "@/service/group.service"
+import { deleteGroup, leaveMemberGroup, updateGroup } from "@/service/group.service"
 import type { Group } from "@/types"
 import { Check, Edit, LogOut, Trash } from "lucide-react"
 import { useState, type FormEvent } from "react"
@@ -32,6 +32,13 @@ function GroupSettings({group}: {
       navigate("/app/groups")
     }
   }
+  const leaveGroup = async () => {
+    const response = await leaveMemberGroup(group.id)
+    if(response.status){
+      toast("left the successfully")
+      navigate("/app/groups")
+    }
+  }
   return (
     <div className="space-y-2">
       <h2 className="text-xl font-black">Group Settings</h2>
@@ -57,11 +64,10 @@ function GroupSettings({group}: {
 
       <h3 className="font-bold text-xl">Group Members</h3>
       <ul>
-        <MemberCard member={group.owner} isOwner/>
-        {group.groupMemberList.map((member) => <MemberCard key={member.id} member={member} />)}
+        {group.groupMemberList.map((member) => <MemberCard groupId={group.id} key={member.id} member={member} />)}
       </ul>
       <div className="flex gap-2">
-        <Button variant={"outline"} type="button">
+        <Button variant={"outline"} type="button" onClick={leaveGroup}>
           <LogOut /> Leave Group
         </Button>
         <Button variant={"destructive"} onClick={removeGroup} type="button">

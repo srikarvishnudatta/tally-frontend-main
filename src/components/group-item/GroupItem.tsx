@@ -1,5 +1,4 @@
 import type { Group } from "@/types"
-import { User } from "lucide-react"
 import { Link } from "react-router-dom"
 
 type GroupItemProps = {
@@ -14,7 +13,7 @@ function GroupItem({group}: GroupItemProps) {
             <h1 className="text-2xl font-semibold text-gray-700 capitalize">{group.groupName} </h1>
         <p className="text-sm text-gray-700">{group.groupDescription}</p>
         <p className="text-xs md:text-sm text-gray-700 flex flex-col gap-1 md:gap-2 md:flex-row md:items-center">
-          <span className="flex items-center"><User size={16}/> Created by: {group.owner.firstName} | </span> Jul 18, 2025: 8:25 am</p>
+          <span className="flex items-center"></span> Jul 18, 2025: 8:25 am</p>
       </div>
       </Link>
     </li>

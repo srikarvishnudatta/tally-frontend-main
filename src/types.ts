@@ -35,7 +35,6 @@ export interface NewGroup {
 }
 export interface Group extends NewGroup{
     id:number,
-    owner:GroupMember,
     groupMemberList: GroupMember[]
 }
 export interface GroupMember {
