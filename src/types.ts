@@ -45,8 +45,9 @@ export interface GroupExpense {
     id:number,
     expenseName:string,
     amount:number,
-    paidBy:string,
-    shareValues: GroupExpenseRecord
+    paidBy:GroupMember,
+    shareValues: GroupExpenseRecord[],
+    message?:string
 }
 export interface GroupExpenseRecord {
     id:number,
@@ -60,6 +61,9 @@ export interface NewGroupExpense {
     paidBy:string,
     groupId:number,
     splitAmong: Record<string, number>
+}
+export interface GroupBalance {
+    message?:string
 }
 export interface NewInvite {
     groupId:number,

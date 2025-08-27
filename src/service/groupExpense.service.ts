@@ -7,6 +7,9 @@ async function getGroupExpenses(groupId: number){
 async function createGroupExpense(data: NewGroupExpense){
     return await axiosInstance.post(`/expenses/`, data)
 }
+async function getBalances(groupId:number){
+    return (await axiosInstance.get(`/expenses/${groupId}/balances`)).data
+}
 export {
-    getGroupExpenses, createGroupExpense
+    getGroupExpenses, createGroupExpense, getBalances
 }

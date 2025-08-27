@@ -11,7 +11,6 @@ function GroupItem({group}: GroupItemProps) {
         <Link to={`/app/groups/${group.id}`}>
         <div className="space-y-2">
             <h1 className="text-2xl font-semibold text-gray-700 capitalize">{group.groupName} </h1>
-        <p className="text-sm text-gray-700">{group.groupDescription}</p>
         <p className="text-xs md:text-sm text-gray-700 flex flex-col gap-1 md:gap-2 md:flex-row md:items-center">
           <span className="flex items-center"></span> Jul 18, 2025: 8:25 am</p>
       </div>

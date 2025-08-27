@@ -7,6 +7,7 @@ import { Select, SelectTrigger,SelectValue,SelectContent, SelectItem } from "./u
 import { Checkbox } from "./ui/checkbox"
 import { createGroupExpense } from "@/service/groupExpense.service"
 import { toast } from "sonner"
+import { useQueryClient } from "@tanstack/react-query"
 
 function ExpenseForm({setIsOpen, members, groupId}: {
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>,
@@ -14,6 +15,7 @@ function ExpenseForm({setIsOpen, members, groupId}: {
     groupId:number
 }) {
     const [shares, setShares] = useState<string[]>([])
+    const queryClient = useQueryClient()
     const submitHandler = async (ev: FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
         const formData = new FormData(ev.target as HTMLFormElement)
@@ -29,9 +31,11 @@ function ExpenseForm({setIsOpen, members, groupId}: {
         if(response.status){
           toast("Expense created successfully")
           setTimeout(() => setIsOpen(false), 100)
+          queryClient.invalidateQueries({
+            queryKey: ["balances" , "group", groupId, "expenses"]
+          })
         }
     }
-    console.log(shares)
   return (
     <form onSubmit={submitHandler} className="space-y-2">
           
