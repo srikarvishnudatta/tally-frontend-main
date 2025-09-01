@@ -5,14 +5,17 @@ import InviteCard from "./InviteCard"
 
 
 function InvitesPage() {
-  const {data: invites, isFetched} = useQuery<unknown, unknown, Invite[]>({
+  const {data: invites, isFetching} = useQuery<unknown, unknown, Invite[]>({
     queryKey: ["invites"],
     queryFn: getAllInvites
   })
   return (
-    isFetched ? <ul className="space-y-2">
+    <div>
+      <h1 className="text-2xl md:text-4xl font-black">Your Invites</h1>
+      {isFetching ? <ul className="space-y-2">
       {invites?.map(invite => <InviteCard key={invite.id} invite={invite}/>)}
-    </ul> : <p>Fetching invites</p>
+      </ul> : <p className="text-gray-600 font-bold text-2xl h-[50vh] flex justify-center items-center">No invites to show</p>}
+    </div>
   )
 }
 

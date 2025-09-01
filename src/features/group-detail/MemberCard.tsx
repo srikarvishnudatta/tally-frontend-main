@@ -19,7 +19,7 @@ function MemberCard({member, groupId} : {
         }
     }
   return (
-    <li className=" px-4 py-5 bg-slate-100  gap-2 md:items-center justify-between flex flex-col md:flex-row">
+    <li className="card p-5 gap-2 md:items-center justify-between flex flex-col md:flex-row">
         <div className="flex items-center gap-2">
             <div className="h-10 w-10 bg-slate-500 rounded-full flex justify-center items-center text-white">
             {member.firstName.charAt(0).toUpperCase()}{member.lastName.charAt(0).toUpperCase()}

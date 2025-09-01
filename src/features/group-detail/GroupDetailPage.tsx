@@ -12,6 +12,7 @@ import InviteForm from "@/components/invite-form"
 import GroupSettings from "./GroupSettings"
 import ExpenseForm from "@/components/expense-form"
 import ExpenseItem from "./ExpenseItem"
+import { Skeleton } from "@/components/ui/skeleton"
 
 function GroupDetailPage() {
   const params = useParams()
@@ -37,10 +38,12 @@ function GroupDetailPage() {
     ]
   })
   const [group, groupExpense, groupBalance] = queries
-  
+  const isGroupFetching = group.isFetching
+  const isExpensesFetching = groupExpense.isFetching
+  const isBalancesFetching = groupBalance.isFetching
   return (
   <>
-     <ResponsiveDialog isOpen={showInviteform} setIsOpen={setShowInviteform} title="Invite your Friend" description="Enter your friend's email">
+  <ResponsiveDialog isOpen={showInviteform} setIsOpen={setShowInviteform} title="Invite your Friend" description="Enter your friend's email">
      <InviteForm groupId={groupId} setIsOpen={setShowInviteform}/>
    </ResponsiveDialog>
    <ResponsiveDialog isOpen={showExpenseForm} setIsOpen={setShowExpenseForm}
@@ -49,20 +52,23 @@ function GroupDetailPage() {
     <ExpenseForm setIsOpen={setShowExpenseForm} members={group.data?.groupMemberList || []} groupId={group.data?.id || 0}/>
    </ResponsiveDialog>
    <div className="space-y-1">
-      <h1 className="text-3xl md:text-4xl capitalize font-black">
+      {isGroupFetching ? <Skeleton className="w-full h-[50px] rounded-md"/> : <h1 className="text-3xl md:text-4xl capitalize font-black">
         {group.data?.groupName}
-      </h1>
-      <Balances balances={groupBalance.data}/>
-       <div className="my-2 space-y-2 md:flex md:gap-2">
+      </h1>}
+      {isBalancesFetching ? <Skeleton  className="w-full min-h-52 rounded-md"/> : <Balances balances={groupBalance.data}/>}
+       <div className="my-2 grid grid-cols-2 gap-2 md:flex">
+          <Button variant={`${currentView === "expenses" ? "default" : "outline"}`} 
+          onClick={() => setCurrentView("expenses")}>Expenses</Button>
+          <Button 
+          variant={`${currentView === "settings" ? "default" : "outline"}`}  
+          onClick={() => setCurrentView("settings")}><Settings />Settings</Button>
           <Button onClick={() => setShowExpenseForm(true)} >Add <PlusIcon /></Button>
-          <Button variant={"outline"} onClick={() => setCurrentView("expenses")}>Expenses</Button>
-          <Button variant={"outline"} onClick={() => setCurrentView("settings")}><Settings />Settings</Button>
           <Button variant={"outline"} onClick={() => setShowInviteform(true)}><Users/> Invite</Button>
         </div>
-      {group && currentView === "expenses" ? 
-       <ul className="space-y-4">
+      {currentView === "expenses" && (isExpensesFetching ? <Skeleton className="w-full h-100px rounded-md"/> : <ul className="space-y-4">
         {groupExpense.data?.map(expense => <ExpenseItem key={expense.id} expense={expense}/>)}
-      </ul> : currentView === "settings" && 
+      </ul>)}  
+      {currentView === "settings" && 
       <GroupSettings group={group.data!} />}
     </div>
   </>

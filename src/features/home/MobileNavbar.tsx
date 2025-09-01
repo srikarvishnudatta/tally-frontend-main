@@ -13,7 +13,7 @@ function MobileNavbar() {
   return (
     <header className="p-3 relative bg-white">
         <nav className="flex w-full justify-between">
-            <Button variant={"ghost"} className="bg-slate-100" onClick={() => setExpanded(prev => !prev)}>
+            <Button variant={"ghost"} className="bg-gray-100" onClick={() => setExpanded(prev => !prev)}>
                 {expanded ? <X /> : <Menu />}
             </Button>
             <div className="flex items-center gap-1">
@@ -25,7 +25,7 @@ function MobileNavbar() {
             </Button>
         </nav>
         <ul className={
-            `absolute bg-white w-[95%] overflow-hidden transition-all duration-300 ${expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`
+            `absolute top-15 left-1 bg-white border-1 w-full overflow-hidden transition-all duration-300 ${expanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`
         }>
             <NavbarItem 
           icon={<LayoutDashboard size={20}/>}

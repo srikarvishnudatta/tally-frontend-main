@@ -24,7 +24,6 @@ function ExpenseForm({setIsOpen, members, groupId}: {
         const paidBy = formData.get("paidBy") as string
         const splitAmong = new Map<string, number>()
         shares.forEach(id => splitAmong.set(id, amount/shares.length))
-        console.log(splitAmong)
         const response = await createGroupExpense({
             expenseName, amount, paidBy, splitAmong: Object.fromEntries(splitAmong), groupId
         })
@@ -38,13 +37,10 @@ function ExpenseForm({setIsOpen, members, groupId}: {
     }
   return (
     <form onSubmit={submitHandler} className="space-y-2">
-          
         <Label>Name</Label>
         <Input name="expenseName"/>
-
         <Label>Amount</Label>
         <Input name="amount" type="number" step={"any"}/>
-
         <Label>Paid by</Label>
         <Select name="paidBy">
           <SelectTrigger >
@@ -57,12 +53,10 @@ function ExpenseForm({setIsOpen, members, groupId}: {
             {member.lastName}</SelectItem>)}
           </SelectContent>
         </Select>
-        
-        {/* Share equally */}
         <Label>Split Among</Label>
-        <div className="border-1 rounded-md px-2 py-4">
+        <div className="border-1 rounded-md px-2 py-4 flex flex-col gap-4">
           {members.map(member => <Label key={member.id}>
-          {member.firstName} {member.lastName} <Checkbox 
+          <span>{member.firstName} {member.lastName}</span><Checkbox 
             onCheckedChange={(checked) => {
               if(checked){
                 setShares(prev => {
@@ -78,7 +72,6 @@ function ExpenseForm({setIsOpen, members, groupId}: {
             />
         </Label>)}
         </div>
-
         <ModalSubmit onClick={() => setIsOpen(false)}/>
     </form>
   )

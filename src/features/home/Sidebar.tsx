@@ -9,7 +9,7 @@ import SidebarContext from "../../context/SidebarContext"
 function Sidebar({children}: {children:ReactNode}) {
 const [expanded, setExpanded] = useState(true)
   return (
-    <aside className="h-screen">
+    <aside className="h-screen bg-gray-50">
         <nav className={`h-full flex flex-col bg-white border-r shadow-sm ${expanded ? "" : "items-center"}`}>
             <div className="p-3 pb-2 flex justify-between items-center">
                 <Logo className={`self-start mx-0 overflow-hidden h-10 w-10 transition-all ${expanded ? "block" : "hidden"}`}/>

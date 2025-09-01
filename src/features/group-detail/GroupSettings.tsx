@@ -41,7 +41,7 @@ function GroupSettings({group}: {
   return (
     <div className="space-y-2">
       <h2 className="text-xl font-black">Group Settings</h2>
-     {edit ? <form className="space-y-2 p-2 border-1 rounded-xl shadow-sm" onSubmit={saveChanges}>
+     {edit ? <form className="space-y-2 p-2 card" onSubmit={saveChanges}>
         <Label>Group Name</Label>
         <Input defaultValue={group.groupName} name="groupName" required/>
         <div className="flex gap-2 justify-end">
@@ -49,7 +49,7 @@ function GroupSettings({group}: {
             <Button>Save <Check /></Button>
         </div>
     </form> : 
-     <div className="bg-slate-100 px-4 py-5 flex justify-between items-center shadow-md rounded-2xl">
+     <div className="p-5 flex justify-between items-center card">
        <div>
         <h3 className="font-bold">{group.groupName}</h3>
        </div>
@@ -58,8 +58,8 @@ function GroupSettings({group}: {
        </Button>
      </div>}
 
-      <h3 className="font-bold text-xl">Group Members</h3>
-      <ul>
+      <h3 className="font-black text-xl">Group Members</h3>
+      <ul className="flex gap-3 flex-col">
         {group.groupMemberList.map((member) => <MemberCard groupId={group.id} key={member.id} member={member} />)}
       </ul>
       <div className="flex gap-2">

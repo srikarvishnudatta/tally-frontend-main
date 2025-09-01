@@ -29,7 +29,7 @@ function InviteCard({
         }
     }
   return (
-    <li className="bg-slate-100 p-3 rounded-md shadow-sm space-y-4">
+    <li className="p-4 rounded-md space-y-4 card">
         <p><strong>{invite.sentBy}</strong> invites you to join group <strong>{invite.groupName}</strong></p>
         <Button variant={"destructive"} type="button" onClick={rejectInvite}>
             <X /> Decline

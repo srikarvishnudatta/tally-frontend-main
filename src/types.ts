@@ -33,7 +33,8 @@ export interface NewGroup {
 }
 export interface Group extends NewGroup{
     id:number,
-    groupMemberList: GroupMember[]
+    groupMemberList: GroupMember[],
+    createdAt: Date
 }
 export interface GroupMember {
     id:string,

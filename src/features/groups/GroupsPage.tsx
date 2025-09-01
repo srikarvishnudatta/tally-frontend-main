@@ -8,9 +8,10 @@ import { useQuery } from "@tanstack/react-query"
 import { Plus } from "lucide-react"
 import { useState } from "react"
 import GroupItem from "./GroupItem"
+import { Skeleton } from "@/components/ui/skeleton"
 
 function GroupsPage() {
-    const {data} = useQuery<unknown, unknown, Group[]>({
+    const {data, isFetching} = useQuery<unknown, unknown, Group[]>({
         queryKey:['groups'],
         queryFn: getGroups
     })
@@ -26,10 +27,10 @@ function GroupsPage() {
             <Input placeholder="Search your groups"/>
             <Button onClick={() => setIsOpen(true)}>Group <Plus /></Button>
             </div>
+            {isFetching ? <Skeleton className="h-[100px] w-full rounded-md" /> : 
             <ul className="space-y-4">
-                {(!data) ? <p className="text-gray-600 font-bold text-2xl h-[50vh] flex justify-center items-center">No expenses to display..</p> :
-                data?.map((group) => <GroupItem key={group.id} group={group}/>)}
-            </ul>
+                {data ? data?.map((group) => <GroupItem key={group.id} group={group}/>) : <p className="text-gray-600 font-bold text-2xl h-[50vh] flex justify-center items-center">No expenses to display..</p>}
+            </ul>}
         </section>
     </>
   )
