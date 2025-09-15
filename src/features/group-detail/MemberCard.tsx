@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { removeMemberGroup } from "@/service/group.service"
+import { removeMemberGroup } from "@/api/group.service"
 import type { GroupMember } from "@/types"
 import { Trash } from "lucide-react"
 import { useNavigate } from "react-router-dom"

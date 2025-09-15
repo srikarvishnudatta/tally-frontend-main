@@ -1,5 +1,5 @@
-import Hero from "./Hero"
-import Navbar from "./Navbar"
+import Hero from "../features/landingpage/Hero"
+import Navbar from "../features/landingpage/Navbar"
 
 function LandingPage() {
   return (

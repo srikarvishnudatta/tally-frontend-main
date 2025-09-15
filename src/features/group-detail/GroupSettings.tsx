@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { deleteGroup, leaveMemberGroup, updateGroup } from "@/service/group.service"
+import { deleteGroup, leaveMemberGroup, updateGroup } from "@/api/group.service"
 import type { Group } from "@/types"
 import { Check, Edit, LogOut, Trash } from "lucide-react"
 import { useState, type FormEvent } from "react"

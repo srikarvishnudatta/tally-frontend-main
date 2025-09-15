@@ -7,7 +7,7 @@ import { useState } from "react";
 import ResponsiveDialog from "@/components/responsive-dialog";
 import EditExpenseItem from "./EditExpenseItem";
 import DeleteForm from "@/components/delete-form";
-import { deletePersonalExpense } from "@/service/personalExpense.service";
+import { deletePersonalExpense } from "@/api/personalExpense.service";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import { convertDate } from "@/lib/date-converter";

@@ -1,7 +1,7 @@
 import type { Dispatch, FormEvent, SetStateAction } from "react"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { sendInvite } from "@/service/invite.service"
+import { sendInvite } from "@/api/invite.service"
 import { toast } from "sonner"
 import ModalSubmit from "./modal-submit"
 

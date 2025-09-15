@@ -5,7 +5,7 @@ import type { GroupMember } from "@/types"
 import ModalSubmit from "./modal-submit"
 import { Select, SelectTrigger,SelectValue,SelectContent, SelectItem } from "./ui/select"
 import { Checkbox } from "./ui/checkbox"
-import { createGroupExpense } from "@/service/groupExpense.service"
+import { createGroupExpense } from "@/api/groupExpense.service"
 import { toast } from "sonner"
 import { useQueryClient } from "@tanstack/react-query"
 

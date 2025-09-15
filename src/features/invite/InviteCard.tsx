@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { acceptInvite, declineInvite } from "@/service/invite.service"
+import { acceptInvite, declineInvite } from "@/api/invite.service"
 import type { Invite } from "@/types"
 import { useQueryClient } from "@tanstack/react-query"
 import { Check, X } from "lucide-react"
