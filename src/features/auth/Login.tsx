@@ -1,13 +1,13 @@
 import AppleButton from "@/components/apple-button";
 import ErrorMessage from "@/components/error-message";
 import GoogleButton from "@/components/google-button";
-import Logo from "@/components/logo";
 import Divider from "@/components/divider";
 import { login } from "@/api/auth.service";
 import type { LoginData } from "@/types";
 import { useMutation } from "@tanstack/react-query";
 import type { FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Calculator } from "lucide-react";
 
 function Login() {
   const navigate = useNavigate();
@@ -25,11 +25,11 @@ function Login() {
   };
   return (
     <form
-      className="mx-2 space-y-2 border-1 border-gray-400 px-4 py-10 w-[560px] shadow-md rounded-md animate-slide-in"
+      className="mx-2 flex flex-col gap-2 glass-effect px-4 py-10 w-[560px] shadow-md animate-slide-in"
       onSubmit={loginHandler}
     >
       <h2 className="text-3xl font-semibold flex items-center gap-2">
-        <Logo /> Login
+        <Calculator /> Login
       </h2>
       {error && <ErrorMessage message={error.message} />}
       <div className="flex flex-col gap-2">
@@ -39,7 +39,7 @@ function Login() {
         <input
           required
           type="email"
-          className="input w-full"
+          className="input w-full bg-white/20"
           name="email"
           id="email"
           placeholder="Email"
@@ -51,23 +51,22 @@ function Login() {
         </label>
         <Link
           to={"/auth/forgot"}
-          className="text-gray-300 underline text-xs link"
+          className="text-gray-700 underline text-xs link"
         >
           Forgot your password?
         </Link>
       </div>
       <input
         className="input w-full"
-        required
         type="password"
         name="password"
         id="password"
-        placeholder="password"
+        placeholder="Password"
       />
-      <button className="w-full btn btn-primary" disabled={isPending}>
+      <button className="w-full button justify-center" disabled={isPending} type="submit">
         Login
       </button>
-      <p className="text-gray-300 text-center text-sm">
+      <p className="text-gray-600 text-center text-sm">
         Don't have an account?{" "}
         <Link to={"/auth/signup"} className="link underline">
           Create one

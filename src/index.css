@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@plugin "daisyui";
 
 @layer base {
   body {
@@ -9,49 +8,112 @@
     font-style: normal;
   }
 }
+
 .content-size {
   @apply max-w-7xl mx-auto h-screen;
 }
+
 .link:hover {
-  @apply text-secondary transition-all ease-in;
+  @apply transition-all ease-in;
   transition-duration: 100ms;
 }
-@keyframes slide-in {
-  from{
+
+.grid-background {
+  @apply absolute -z-10 inset-0 h-full w-full 
+  bg-[linear-gradient(to_right,#73737310_1px,transparent_1px),linear-gradient(to_bottom,#73737310_1px,transparent_1px)] 
+  bg-[size:20px_20px];
+}
+
+.glass-navbar {
+  @apply border border-white/30 backdrop-blur-xl bg-gray-100/50 rounded-lg;
+}
+
+.glass-effect {
+  @apply border border-white/30 backdrop-blur-xl bg-white/50 rounded-lg;
+}
+
+.button {
+  @apply flex items-center py-2 px-3 bg-blue-500 rounded-lg text-white border border-white/30 shadow-md;
+}
+
+.button:hover {
+  @apply bg-blue-400 transition-all duration-150 ease-in cursor-pointer;
+}
+
+.button-secondary {
+  @apply flex py-2 px-3 bg-blue-50 border border-blue-500 rounded-lg text-blue-500  shadow-md;
+}
+
+.button-destructive {
+  @apply flex py-2 px-3 bg-red-500 rounded-md text-white items-center gap-2;
+}
+
+.input {
+  @apply bg-white/20 p-3 border border-gray-200 rounded-lg;
+}
+
+.label {
+
+}
+
+@keyframes slide-up {
+  from {
     opacity: 0;
     transform: translateY(10px);
   }
-  to{
+  to {
     opacity: 1;
     transform: translate(0);
   }
 }
-.animate-slide-in{
+.animate-slide-up-1 {
+  animation: slide-up 100ms ease-in;
+}
+.animate-slide-up-2 {
+  animation: slide-up 300ms ease-in;
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(-10px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.animate-slide-in {
   animation: slide-in 100ms ease-in;
 }
-.animate-slide-in-1 {
-  animation: slide-in 300ms ease-in;
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-10px);
+  }
+}
+.animate-slide-out {
+  animation: slide-out 300ms ease-out;
 }
 .tally {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 .tally::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -9px; 
-    width: 0;
-    height: 8px; 
-    background: var(--color-primary);
-    transition: width 0.4s ease;
-    animation: underline-grow 0.8s forwards 0.5s;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -9px;
+  width: 0;
+  height: 8px;
+  @apply bg-blue-500;
+  transition: width 0.4s ease;
+  animation: underline-grow 0.8s forwards 0.5s;
 }
 @keyframes underline-grow {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }

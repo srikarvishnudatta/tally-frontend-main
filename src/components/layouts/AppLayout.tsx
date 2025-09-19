@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import SidebarNew from "@/features/home/SidebarNew";
+import Navbar from "@/features/dashboard/Navbar";
 
 function AppLayout() {
   return (
-    <main className={`h-screen`}>
-      <SidebarNew />
-      <section className="flex-1 p-3">
+    <main className={`h-screen content-size px-4`}>
+      <Navbar />
+      <section className="flex-1">
         <Outlet />
       </section>
     </main>

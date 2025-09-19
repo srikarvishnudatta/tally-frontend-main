@@ -3,9 +3,11 @@ import Navbar from "../features/landingpage/Navbar"
 
 function LandingPage() {
   return (
-    <main className="content-size dot-background">
-      <Navbar />
-      <Hero />
+    <main className="grid-background">
+      <section className="content-size">
+        <Navbar />
+        <Hero />
+      </section>
     </main>
   )
 }

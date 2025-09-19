@@ -8,9 +8,8 @@ export interface SignupData{
     firstName:string;
     lastName:string;
 }
-export interface NewServerUser{
-    firstName:string;
-    lastName:string;
+export interface LoginResponse {
+    ACCESS_TOKEN:string
 }
 export interface Balances{
     income:number,

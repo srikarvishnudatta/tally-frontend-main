@@ -4,12 +4,12 @@ import AuthLayout from "@/components/layouts/AuthLayout";
 import Login from "@/features/auth/Login";
 import Signup from "@/features/auth/Signup";
 import AppLayout from "./components/layouts/AppLayout";
-import PersonalExpensesPage from "@/pages/PersonalExpensesPage";
-import GroupsPage from "@/pages/GroupsPage";
+import ExpensesPage from "@/pages/Expenses";
+import GroupsPage from "@/pages/Groups";
 import GroupDetailPage from "@/pages/GroupDetailPage";
-import Dashboard from "./features/dashboard/Dashboard";
-import SettingsPage from "./pages/SettingsPage";
-import InvitesPage from "@/pages/InvitesPage";
+import Dashboard from "@/pages/Dashboard";
+import SettingsPage from "./pages/Settings";
+import InvitesPage from "@/pages/Invites";
 import NotFound from "./NotFound";
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route index element={<Dashboard />} />
         <Route path="groups" element={<GroupsPage />} />
         <Route path="groups/:groupId" element={<GroupDetailPage />} />
-        <Route path="personal" element={<PersonalExpensesPage />} />
+        <Route path="expenses" element={<ExpensesPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="invites" element={<InvitesPage />} />
       </Route>
